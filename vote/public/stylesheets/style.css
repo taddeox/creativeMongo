@@ -1,8 +1,40 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
 }
 
 a {
   color: #00B7FF;
+}
+
+img {
+  width:250px;
+  height:250px;
+}
+
+#vs {
+  width:150px;
+  height:150px;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-columns: 250px 250px 250px;
+  grid-gap: 10px;
+}
+
+.box {
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center {
+  display: flex;
+  aliign-items: center;
+  justify-content: center;
 }
