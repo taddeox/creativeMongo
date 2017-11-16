@@ -16,10 +16,6 @@ var questions = [
     "End",
     "middle.PNG",
     "Middle"],
-    ["https://winblogs.azureedge.net/win/2016/12/cropped-cropped-Windows-logo1-270x270.png",
-    "PC",
-    "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?201709101434",
-    "Mac"],
     ["https://www.facebook.com/images/fb_icon_325x325.png",
     "Facebook",
     "https://lh3.googleusercontent.com/aYbdIM1abwyVSUZLDKoE0CDZGRhlkpsaPOg9tNnBktUQYsXflwknnOn2Ge1Yr7rImGk=w300",
@@ -62,12 +58,12 @@ $(document).ready(function(){
     }
     else{
         $("#header").html("Results");
-        $("#boxa").html("a");
-        $("#boxb").html("b");
-        $("#boxc").html("c");
-        $("#boxd").html("d");
-        $("#boxe").html("e");
-        $("#boxf").html("f");
+        $("#boxa").html("<p>Android:XX%<br>Apple:XX%</p>");
+        $("#boxb").html("<p>Over:XX%<br>Under:XX%</p>");
+        $("#boxc").html("<p>Inline:XX%<br>Newline:XX%</p>");
+        $("#boxd").html("<p>End:XX%<br>Middle:XX%</p>");
+        $("#boxe").html("<p>Facebook:XX%<br>Instagram:XX%</p>");
+        $("#boxf").html("<p>CamelCase:XX%<br>Underscore:XX%</p>");
        //todo:send to results page
     }
     

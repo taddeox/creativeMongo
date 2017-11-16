@@ -11,11 +11,13 @@ a {
 img {
   width:250px;
   height:auto;
+  cursor:pointer;
 }
 
 #vs {
   width:150px;
   height:150px;
+  cursor:default;
 }
 
 .wrapper{
