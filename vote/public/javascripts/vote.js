@@ -67,7 +67,7 @@ $(document).ready(function(){
         $("#boxf").html("<p>CamelCase:XX%<br>Underscore:XX%</p>");
        //todo:send to results page
     }
-    
+    /*
     //delete later
     $.ajax({
         url:"vote",
@@ -77,7 +77,7 @@ $(document).ready(function(){
             console.log(data);
         }
     });
-
+    */
 
 
     var url = "vote";
