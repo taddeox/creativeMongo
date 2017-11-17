@@ -43,7 +43,8 @@ $(document).ready(function(){
     var myobj = {Id:currentQuestion,Side:userSide};
     currentQuestion++;
     jobj = JSON.stringify(myobj);
-    $("#json").text(jobj);
+    console.log(myobj);
+    console.log(jobj);
 
 
 
@@ -67,7 +68,15 @@ $(document).ready(function(){
        //todo:send to results page
     }
     
-
+    //delete later
+    $.ajax({
+        url:"vote",
+        type:"GET",
+        success: function(data){
+            console.log("from get");
+            console.log(data);
+        }
+    });
 
 
 
