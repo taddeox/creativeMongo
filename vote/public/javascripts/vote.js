@@ -43,42 +43,6 @@ $(document).ready(function(){
     var myobj = {Id:currentQuestion,Side:userSide};
     currentQuestion++;
     jobj = JSON.stringify(myobj);
-    console.log(myobj);
-    console.log(jobj);
-
-
-
-
-    
-    if(currentQuestion < questions.length){
-        $("#pic1").attr("src", questions[currentQuestion][0]);
-        $("#des1").html(questions[currentQuestion][1]);
-        $("#pic2").attr("src", questions[currentQuestion][2]);
-        $("#des2").html(questions[currentQuestion][3]);
-        //todo:finish this/ make it work
-    }
-    else{
-        $("#header").html("Results");
-        $("#boxa").html("<p>Android:XX%<br>Apple:XX%</p>");
-        $("#boxb").html("<p>Over:XX%<br>Under:XX%</p>");
-        $("#boxc").html("<p>Inline:XX%<br>Newline:XX%</p>");
-        $("#boxd").html("<p>End:XX%<br>Middle:XX%</p>");
-        $("#boxe").html("<p>Facebook:XX%<br>Instagram:XX%</p>");
-        $("#boxf").html("<p>CamelCase:XX%<br>Underscore:XX%</p>");
-       //todo:send to results page
-    }
-    /*
-    //delete later
-    $.ajax({
-        url:"vote",
-        type:"GET",
-        success: function(data){
-            console.log("from get");
-            console.log(data);
-        }
-    });
-    */
-
 
     var url = "vote";
     $.ajax({
@@ -88,15 +52,37 @@ $(document).ready(function(){
       contentType: "application/json; charset=utf-8",
       success: function(data,textStatus) {
         if(currentQuestion < questions.length){
-
             $("#pic1").attr("src", questions[currentQuestion][0]);
             $("#des1").html(questions[currentQuestion][1]);
             $("#pic2").attr("src", questions[currentQuestion][2]);
             $("#des2").html(questions[currentQuestion][3]);
-            //todo:finish this/ make it work
         }
         else{
-           //todo:send to results page
+            $.ajax({
+                url:"vote",
+                type:"GET",
+                success: function(data){
+                    var android = ((data[0].LeftVotes/(data[0].LeftVotes+data[0].RightVotes))*100).toFixed(1);
+                    var apple = ((data[0].RightVotes/(data[0].LeftVotes+data[0].RightVotes))*100).toFixed(1);
+                    var over = ((data[1].LeftVotes/(data[1].LeftVotes+data[1].RightVotes))*100).toFixed(1);
+                    var under = ((data[1].RightVotes/(data[1].LeftVotes+data[1].RightVotes))*100).toFixed(1);
+                    var inline = ((data[2].LeftVotes/(data[2].LeftVotes+data[2].RightVotes))*100).toFixed(1);
+                    var newline = ((data[2].RightVotes/(data[2].LeftVotes+data[2].RightVotes))*100).toFixed(1);
+                    var end = ((data[3].LeftVotes/(data[3].LeftVotes+data[3].RightVotes))*100).toFixed(1);
+                    var middle = ((data[3].RightVotes/(data[3].LeftVotes+data[3].RightVotes))*100).toFixed(1);
+                    var facebook = ((data[4].LeftVotes/(data[4].LeftVotes+data[4].RightVotes))*100).toFixed(1);
+                    var instagram = ((data[4].RightVotes/(data[4].LeftVotes+data[4].RightVotes))*100).toFixed(1);
+                    var camelcase = ((data[5].LeftVotes/(data[5].LeftVotes+data[5].RightVotes))*100).toFixed(1);
+                    var underscore = ((data[5].RightVotes/(data[5].LeftVotes+data[5].RightVotes))*100).toFixed(1);
+                    $("#header").html("Results");
+                    $("#boxa").html("<p>Android: "+android+"%<br>Apple:"+apple+"%</p>");
+                    $("#boxb").html("<p>Over: "+over+"%<br>Under:"+under+"%</p>");
+                    $("#boxc").html("<p>Inline: "+inline+"%<br>Newline:"+newline+"%</p>");
+                    $("#boxd").html("<p>End: "+end+"%<br>Middle:"+middle+"%</p>");
+                    $("#boxe").html("<p>Facebook: "+facebook+"%<br>Instagram:"+instagram+"%</p>");
+                    $("#boxf").html("<p>CamelCase: "+camelcase+"%<br>Underscore:"+underscore+"%</p>");
+                }
+            });
         }
       }
     })
@@ -110,39 +96,3 @@ $(document).ready(function(){
   });
 
 });
-
-
-
-/*
-
-
-    var myobj = {Id:currentQuestion,Side:userSide};
-    //currentQuestion++;
-    jobj = JSON.stringify(myobj);
-    $("#json").text(jobj);
-
-    var url = "vote";
-    $.ajax({
-      url:url,
-      type: "POST",
-      data: jobj,
-      contentType: "application/json; charset=utf-8",
-      success: function(data,textStatus) {
-        if(currentQuestion < questions.length){
-
-            $("#pic1").attr("src", questions[currentQuestion][0]);
-            $("#des1").html(questions[currentQuestion][1]);
-            $("#pic2").attr("src", questions[currentQuestion][2]);
-            $("#des2").html(questions[currentQuestion][3]);
-            //todo:finish this/ make it work
-        }
-        else{
-           //todo:send to results page
-        }
-      }
-    })
-
-  });
-
-});
-*/
