@@ -33,7 +33,33 @@ $(document).ready(function(){
   $("#pic2").attr("src", questions[currentQuestion][2]);
   $("#des2").html(questions[currentQuestion][3]);
 
-
+  function updateResults(){
+    $.ajax({
+                url:"vote",
+                type:"GET",
+                success: function(data){
+                    var android = ((data[0].LeftVotes/(data[0].LeftVotes+data[0].RightVotes))*100).toFixed(1);
+                    var apple = ((data[0].RightVotes/(data[0].LeftVotes+data[0].RightVotes))*100).toFixed(1);
+                    var over = ((data[1].LeftVotes/(data[1].LeftVotes+data[1].RightVotes))*100).toFixed(1);
+                    var under = ((data[1].RightVotes/(data[1].LeftVotes+data[1].RightVotes))*100).toFixed(1);
+                    var inline = ((data[2].LeftVotes/(data[2].LeftVotes+data[2].RightVotes))*100).toFixed(1);
+                    var newline = ((data[2].RightVotes/(data[2].LeftVotes+data[2].RightVotes))*100).toFixed(1);
+                    var end = ((data[3].LeftVotes/(data[3].LeftVotes+data[3].RightVotes))*100).toFixed(1);
+                    var middle = ((data[3].RightVotes/(data[3].LeftVotes+data[3].RightVotes))*100).toFixed(1);
+                    var facebook = ((data[4].LeftVotes/(data[4].LeftVotes+data[4].RightVotes))*100).toFixed(1);
+                    var instagram = ((data[4].RightVotes/(data[4].LeftVotes+data[4].RightVotes))*100).toFixed(1);
+                    var camelcase = ((data[5].LeftVotes/(data[5].LeftVotes+data[5].RightVotes))*100).toFixed(1);
+                    var underscore = ((data[5].RightVotes/(data[5].LeftVotes+data[5].RightVotes))*100).toFixed(1);
+                    $("#header").html("Results");
+                    $("#boxa").html("<p>Android: "+android+"%<br>Apple:"+apple+"%</p>");
+                    $("#boxb").html("<p>Over: "+over+"%<br>Under:"+under+"%</p>");
+                    $("#boxc").html("<p>Inline: "+inline+"%<br>Newline:"+newline+"%</p>");
+                    $("#boxd").html("<p>End: "+end+"%<br>Middle:"+middle+"%</p>");
+                    $("#boxe").html("<p>Facebook: "+facebook+"%<br>Instagram:"+instagram+"%</p>");
+                    $("#boxf").html("<p>CamelCase: "+camelcase+"%<br>Underscore:"+underscore+"%</p>");
+                }
+            });
+  }
 
   function castVote(userSide){
     console.log("in cast vote, userSide:");
@@ -58,6 +84,8 @@ $(document).ready(function(){
             $("#des2").html(questions[currentQuestion][3]);
         }
         else{
+            //var interval = window.setInterval(updateResults,5000)
+            
             $.ajax({
                 url:"vote",
                 type:"GET",
@@ -83,6 +111,7 @@ $(document).ready(function(){
                     $("#boxf").html("<p>CamelCase: "+camelcase+"%<br>Underscore:"+underscore+"%</p>");
                 }
             });
+            var interval = window.setInterval(updateResults,5000);
         }
       }
     })
